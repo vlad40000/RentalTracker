@@ -31,7 +31,7 @@ When `DEMO_MODE=true`, **Settings → Reset current portfolio demo** reconstruct
 
 ## What is implemented
 
-- Dummy single-owner authentication for demonstration
+- Open demo access with no sign-in requirement while demo mode is enabled
 - One-screen adaptive setup for property count, unit type, phone access, and history depth
 - Navigation and layout capabilities derived from setup answers and actual portfolio size
 - Sales-oriented dashboard with the immediate paid-status verdict, overdue tenants, collections, expenses, YTD cash, credits held, occupancy, recent activity, backup status, and import-integrity warning
@@ -116,10 +116,10 @@ The **Explore the Sample Portfolio** button creates the same signed, HttpOnly de
 ## Environment variables
 
 - `DATABASE_URL`: Neon pooled Postgres connection string
-- `DEMO_MODE`: exactly `true` enables demo labeling and reset
+- `DEMO_MODE`: open demo access is the current default; set exactly `false` to enable the temporary credential gate
 - `DEMO_SHOW_REAL_TENANT_NAMES`: defaults false; exactly `true` opts into approved real names on the next seed/reset
-- `DEMO_AUTH_SECRET`: at least 32 random characters for a hosted demo
-- `DEMO_OWNER_EMAIL`, `DEMO_OWNER_PASSWORD`: dummy demo credentials
+- `DEMO_AUTH_SECRET`: used only when `DEMO_MODE=false`; then it must contain at least 32 random characters
+- `DEMO_OWNER_EMAIL`, `DEMO_OWNER_PASSWORD`: temporary credentials used only when `DEMO_MODE=false`
 - `CRON_SECRET`: protects the nightly export route
 - `BLOB_READ_WRITE_TOKEN`: provided when Vercel Blob is connected
 

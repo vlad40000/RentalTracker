@@ -4,6 +4,8 @@ import { getSettings } from "@/lib/data";
 import { Flash, flashFrom } from "@/components/flash";
 import { SetupForm } from "@/components/setup-form";
 
+export const dynamic = "force-dynamic";
+
 export default async function SetupPage({searchParams}:{searchParams:Promise<Record<string,string|string[]|undefined>>}){
   await requireSession();
   const [settings,flash]=await Promise.all([getSettings(),flashFrom(searchParams)]);

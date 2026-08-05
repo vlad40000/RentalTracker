@@ -5,6 +5,8 @@ import { deriveCapabilities } from "@/lib/capabilities";
 import { getActivePropertyCount, getSettings } from "@/lib/data";
 import { demoShowsRealTenantNames, isDemoMode } from "@/lib/demo";
 
+export const dynamic = "force-dynamic";
+
 export default async function ProtectedLayout({children}:{children:React.ReactNode}){
   await requireSession();
   const settings=await getSettings();

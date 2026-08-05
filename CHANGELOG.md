@@ -1,3 +1,13 @@
+# v0.3.1 — Open Demo Access Repair
+
+- Removed the signed-session requirement while the sales demo is enabled.
+- Made demo mode the temporary default unless `DEMO_MODE=false` is explicitly set.
+- Prevented missing `DEMO_AUTH_SECRET` from breaking the public demo entry path.
+- Hid Sign out in open demo mode and labeled the workspace as an open demo.
+- Forced database-backed route segments to remain dynamically rendered after removing the cookie dependency.
+- Replaced the production React error string with a safe demo-facing recovery message and digest reference.
+- Added demo-mode regression tests.
+
 # v0.3.0 — Current Portfolio Demo
 
 - Replaced the generic three-property seed with the approved 17-property current-portfolio roster and payment patterns.

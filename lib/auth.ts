@@ -1,6 +1,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { isDemoMode } from "@/lib/demo";
 
 const COOKIE_NAME = "rental_demo_session";
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 14;
@@ -44,15 +45,18 @@ export function verifySessionToken(token: string | undefined): boolean {
 }
 
 export async function isAuthenticated(): Promise<boolean> {
+  if (isDemoMode()) return true;
   const store = await cookies();
   return verifySessionToken(store.get(COOKIE_NAME)?.value);
 }
 
 export async function requireSession(): Promise<void> {
+  if (isDemoMode()) return;
   if (!(await isAuthenticated())) redirect("/login");
 }
 
 export async function setSessionCookie(): Promise<void> {
+  if (isDemoMode()) return;
   const store = await cookies();
   store.set(COOKIE_NAME, createSessionToken(), {
     httpOnly: true,
@@ -64,11 +68,13 @@ export async function setSessionCookie(): Promise<void> {
 }
 
 export async function clearSessionCookie(): Promise<void> {
+  if (isDemoMode()) return;
   const store = await cookies();
   store.delete(COOKIE_NAME);
 }
 
 export function demoCredentialsMatch(email: string, password: string): boolean {
+  if (isDemoMode()) return true;
   const expectedEmail = process.env.DEMO_OWNER_EMAIL ?? "owner@example.com";
   const expectedPassword = process.env.DEMO_OWNER_PASSWORD ?? "demo-only-change-me";
   return safeEqual(email.trim().toLowerCase(), expectedEmail.toLowerCase()) && safeEqual(password, expectedPassword);

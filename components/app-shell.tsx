@@ -17,7 +17,7 @@ export function AppShell({children,capabilities,demoMode,showRealTenantNames}:{c
       {demoMode&&<div className="demo-banner"><strong>Current Portfolio Demo</strong><span>{showRealTenantNames?"Approved current tenant names visible":"Tenant names masked"} · changes are temporary</span><Link href="/settings">Demo settings</Link></div>}
       <header className="topbar">
         <div><span className="desktop-title">{capabilities.actualPropertyCount} active propert{capabilities.actualPropertyCount===1?"y":"ies"} · single-owner workspace</span><span className="mobile-title">Rental Tracker</span></div>
-        <div className="topbar-actions"><Link className="button compact secondary" href="/settings/data-safety">Data safety</Link><form action={logoutAction}><button className="button compact ghost" type="submit">Sign out</button></form></div>
+        <div className="topbar-actions"><Link className="button compact secondary" href="/settings/data-safety">Data safety</Link>{demoMode?<span className="status-badge paid">Open demo</span>:<form action={logoutAction}><button className="button compact ghost" type="submit">Sign out</button></form>}</div>
       </header>
       <div className="content">{children}</div>
       <Link className="quick-payment" href="/payments/new"><span aria-hidden="true">＋</span> Record payment</Link>
