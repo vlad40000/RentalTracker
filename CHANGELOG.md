@@ -1,12 +1,18 @@
-# v0.3.1 — Open Demo Access Repair
+# v0.3.2 — Open Demo and Automatic Database Bootstrap
 
-- Removed the signed-session requirement while the sales demo is enabled.
-- Made demo mode the temporary default unless `DEMO_MODE=false` is explicitly set.
-- Prevented missing `DEMO_AUTH_SECRET` from breaking the public demo entry path.
-- Hid Sign out in open demo mode and labeled the workspace as an open demo.
-- Forced database-backed route segments to remain dynamically rendered after removing the cookie dependency.
-- Replaced the production React error string with a safe demo-facing recovery message and digest reference.
-- Added demo-mode regression tests.
+- Removed credential, cookie, token, and session enforcement from the demo UI and API routes.
+- Removed the login screen and sign-out control from the public demo flow.
+- Kept a no-op compatibility shim only for legacy server-action imports; it performs no authentication work.
+- Added a Vercel build step that applies migrations and reseeds the current-portfolio demo before every production build.
+- Fixed the production runtime failure caused by the connected Neon database having no application tables.
+
+# v0.3.1 — Open Demo Repair
+
+- Allowed the sales demo to open without a signed session or `DEMO_AUTH_SECRET`.
+- Defaulted demo mode on unless explicitly disabled.
+- Forced database-backed routes to render dynamically.
+- Hid sign-out while open demo access is active.
+- Added demo-mode regression coverage.
 
 # v0.3.0 — Current Portfolio Demo
 

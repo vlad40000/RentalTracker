@@ -1,11 +1,9 @@
 import { get } from "@vercel/blob";
-import { isAuthenticated } from "@/lib/auth";
 import { maybeOne } from "@/lib/db";
 
 export const runtime="nodejs";
 
 export async function GET(_request:Request,{params}:{params:Promise<{id:string}>}){
-  if(!(await isAuthenticated())) return new Response("Unauthorized",{status:401});
   const {id}=await params;
   const expense=await maybeOne<{receipt_blob_url:string|null}>(`SELECT receipt_blob_url FROM expenses WHERE id=$1`,[id]);
   if(!expense?.receipt_blob_url) return new Response("Receipt not found",{status:404});

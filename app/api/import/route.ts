@@ -1,10 +1,8 @@
-import { isAuthenticated } from "@/lib/auth";
 import { importCsvBatch } from "@/lib/import";
 
 export const runtime="nodejs";
 
 export async function POST(request:Request){
-  if(!(await isAuthenticated())) return Response.json({error:"Unauthorized"},{status:401});
   try{
     const form=await request.formData(); const file=form.get("file");
     if(!(file instanceof File)) return Response.json({error:"Choose a CSV file"},{status:400});
