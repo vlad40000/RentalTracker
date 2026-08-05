@@ -1,4 +1,4 @@
-type DemoEnvironment = Pick<NodeJS.ProcessEnv, "DEMO_MODE" | "DEMO_SHOW_REAL_TENANT_NAMES">;
+type DemoEnvironment = Partial<Pick<NodeJS.ProcessEnv, "DEMO_MODE" | "DEMO_SHOW_REAL_TENANT_NAMES">>;
 
 /**
  * This repository is currently the public sales demo. Demo access therefore
