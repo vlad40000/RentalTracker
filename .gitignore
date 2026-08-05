@@ -1,0 +1,11 @@
+node_modules
+.next
+.env
+.env.local
+.vercel
+coverage
+*.log
+.DS_Store
+
+# TypeScript incremental build cache
+tsconfig.tsbuildinfo

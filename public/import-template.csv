@@ -1,0 +1,4 @@
+type,property_address,tenant_name,payer_name,date,due_date,amount,method,reference,charge_type,category,description,vendor
+payment,125 Demo Street,Jordan Ellis,Jordan Ellis,2026-07-05,,1650.00,ach,JULY-RENT,,,,
+charge,125 Demo Street,Jordan Ellis,,2026-07-01,2026-07-05,1650.00,,,rent,,July rent,
+expense,125 Demo Street,,,2026-07-12,,185.40,,,,Plumbing,Kitchen sink repair,Demo Plumbing Co
