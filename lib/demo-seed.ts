@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
-import type { DbClient } from "./db";
-import { demoShowsRealTenantNames } from "./demo";
-import { buildCurrentPortfolioDemoPlan } from "./domain/current-portfolio-demo";
+import type { DbClient } from "./db.ts";
+import { demoShowsRealTenantNames } from "./demo.ts";
+import { buildCurrentPortfolioDemoPlan } from "./domain/current-portfolio-demo.ts";
 
 function iso(date: Date): string { return date.toISOString().slice(0,10); }
 function monthAt(asOf:Date,offset:number):Date { return new Date(Date.UTC(asOf.getUTCFullYear(),asOf.getUTCMonth()+offset,1)); }
