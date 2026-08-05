@@ -12,7 +12,7 @@ export async function GET(request:Request){
   try{
     const exported=await buildExportPackage(); const stamp=exported.createdAt.replaceAll(':','-');
     const json=await put(`rental-tracker/nightly/${stamp}.json`,JSON.stringify(exported,null,2),{access:"private",contentType:"application/json",addRandomSuffix:false});
-    const csv=await put(`rental-tracker/nightly/${stamp}.zip`,buildCsvZip(exported.tables),{access:"private",contentType:"application/zip",addRandomSuffix:false});
+    const csv=await put(`rental-tracker/nightly/${stamp}.zip`,Buffer.from(buildCsvZip(exported.tables)),{access:"private",contentType:"application/zip",addRandomSuffix:false});
     await query(`INSERT INTO export_runs(id,export_version,trigger_type,json_blob_url,csv_blob_url,checksum,status) VALUES($1,1,'scheduled',$2,$3,$4,'complete')`,[id,json.url,csv.url,exported.checksum]);
     return Response.json({ok:true,id,checksum:exported.checksum});
   }catch(error){
