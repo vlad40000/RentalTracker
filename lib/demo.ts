@@ -1,4 +1,4 @@
-type DemoEnvironment = Partial<Pick<NodeJS.ProcessEnv, "DEMO_MODE" | "DEMO_SHOW_REAL_TENANT_NAMES">>;
+type DemoEnvironment = Readonly<Record<string, string | undefined>>;
 
 /**
  * This repository is currently the public sales demo. Demo access therefore
